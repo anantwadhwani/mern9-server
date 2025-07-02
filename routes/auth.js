@@ -33,14 +33,14 @@ router.post('/login', async (req, res) => {
     if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials' });
 
     const payload = { user: { id: user.id } };
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign(payload, process.env.JWT_SECRET);
 
     res
       .cookie('token', token, {
         httpOnly: true,
-        sameSite: 'Lax',
+        sameSite: 'None',
         secure: true,
-        maxAge: 3600000
+        maxAge: 7 * 24 * 60 * 60 * 1000
       })
       .json({ msg: 'Logged in' });
   } catch (err) {
