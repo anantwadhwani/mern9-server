@@ -10,7 +10,7 @@ connectDB();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: '*',
+    origin: 'https://mern9-client.onrender.com',
     credentials: true
   })
 );
